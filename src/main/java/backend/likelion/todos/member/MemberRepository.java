@@ -14,9 +14,11 @@ public class MemberRepository {
     // 멤버를 저장소에 저장하고 저장된 멤버를 반환합니다.
     public Member save(Member member) {
         // TODO [1단계] member의 id를 설정하세요.
+        member.setId(id++);
         // TODO [1단계] members 맵에 member를 추가하세요.
+        members.put(member.getId(),member);
         // TODO [1단계] member를 반환하세요.
-        return null;
+        return member;
     }
 
     // 주어진 id에 해당하는 멤버를 찾아 Optional로 반환합니다.
