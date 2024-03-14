@@ -45,7 +45,12 @@ public class TodoRepository {
     // 특정 회원 ID와 날짜에 해당하는 모든 Todo를 찾아 리스트로 반환합니다.
     public List<Todo> findAllByMemberIdAndDate(Long memberId, YearMonth yearMonth) {
         // TODO [3단계] todos 맵에서 memberId와 일치하고, yearMonth에 속하는 모든 Todo를 찾아 리스트로 반환하세요.
+        List<Todo> list = todos.values().stream().filter(it-> it.getGoal().getMember().getId().equals(memberId))
+                .filter(it -> it.getDate().getYear() == yearMonth.getYear())
+                .filter(it -> it.getDate().getMonthValue() == yearMonth.getMonthValue())
+                .collect(Collectors.toList());
         // TODO [3단계] 찾은 Todo 리스트를 날짜 순으로 정렬하세요.
-        return null;
+        Collections.sort(list, Comparator.comparing(Todo::getDate));
+        return list;
     }
 }

@@ -28,10 +28,14 @@ public class TodoService {
     // Todo를 저장하고 저장된 Todo의 ID를 반환합니다.
     public Long save(Long goalId, Long memberId, String content, LocalDate date) {
         // TODO [3단계] memberId로 회원 정보를 조회하고, 없으면 "회원 정보가 없습니다." 메시지와 함께 NotFoundException을 발생시키세요.
+        Member member = memberRepository.findById(memberId).orElseThrow(() -> new NotFoundException("외원 정보가 없습니다."));
         // TODO [3단계] goalId로 목표 정보를 조회하고, 없으면 "목표 정보가 없습니다." 메시지와 함께 NotFoundException을 발생시키세요.
+        Goal goal = goalRepository.findById(goalId).orElseThrow(() -> new NotFoundException("목표 정보가 없습니다."));
         // TODO [3단계] 조회한 목표의 멤버가 입력된 멤버와 동일한지 확인하세요.
+        goal.validateMember(member);
         // TODO [3단계] Todo 인스턴스를 생성하고 todoRepository에 저장한 후, 저장된 Todo의 ID를 반환하세요.
-        return null;
+        Todo todo = new Todo(content, date, goal);
+        return todoRepository.save(todo).getId();
     }
 
     // 주어진 Todo의 내용과 날짜를 업데이트합니다.
