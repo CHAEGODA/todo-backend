@@ -37,7 +37,9 @@ public class Todo {
     // 투두의 내용과 날짜를 업데이트합니다.
     public void update(String content, LocalDate date) {
         // TODO [3단계] 이 객체의 content를 새로운 content 값으로 설정하세요.
+        this.content = content;
         // TODO [3단계] 이 객체의 date를 새로운 date 값으로 설정하세요.
+        this.date = date;
     }
 
     // 투두를 완료 상태로 표시합니다.
