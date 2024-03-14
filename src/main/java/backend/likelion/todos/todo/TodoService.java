@@ -74,8 +74,12 @@ public class TodoService {
     // 주어진 Todo를 삭제합니다.
     public void delete(Long todoId, Long memberId) {
         // TODO [3단계] memberId로 회원 정보를 조회하고, 없으면 "회원 정보가 없습니다." 메시지와 함께 NotFoundException을 발생시키세요.
+        Member member = memberRepository.findById(memberId).orElseThrow(() -< new NotFoundException("회원 정보가 없습니다."));
         // TODO [3단계] todoId로 투두 정보를 조회하고, 없으면 "투두 정보가 없습니다." 메시지와 함께 NotFoundException을 발생시키세요.
+        Todo todo = todoRepository.findById(todoId).orElseThrow(() -> new NotFoundException("투두 정보가 없습니다."));
         // TODO [3단계] 조회한 투두의 멤버가 입력된 멤버와 동일한지 확인하고, 투두를 삭제하세요.
+        todo.validateMember(member);
+        todoRepository.delete(todo);
     }
 
     // 특정 회원 ID와 날짜에 해당하는 모든 Todo를 찾아 TodoWithDayResponse 리스트로 반환합니다.
