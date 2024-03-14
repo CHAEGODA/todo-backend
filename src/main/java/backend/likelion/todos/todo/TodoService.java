@@ -85,7 +85,20 @@ public class TodoService {
     // 특정 회원 ID와 날짜에 해당하는 모든 Todo를 찾아 TodoWithDayResponse 리스트로 반환합니다.
     public List<TodoWithDayResponse> findAllByMemberIdAndDate(Long memberId, YearMonth date) {
         // TODO [3단계] memberId와 date를 사용하여 해당하는 모든 Todo를 조회하세요.
+        List<Todo> todos = todoRepository.findAllByMemberIdAndDate(memberId, date);
+        Map<Integer, List<Todo>> todoWithDays = todos.stream().collect(Collectors.groupingBy(it -> it.getDate().getDayOfMonth());
         // TODO [3단계] 조회된 Todo를 날짜별로 그룹화하고, 각 그룹을 TodoWithDayResponse 객체로 변환하여 리스트로 반환하세요.
-        return null;
+        List<TodoWithDayResponse> responses = new ArrayList<>();
+        for(Entry<Integer, List<Todo>> todo : todoWithDays.entrySet()) {
+            List<TodoResponse> todoResponses = todo.getValue().stream()
+                    .map(it -> new TodoResponse(
+                            it.getId(),
+                            it.getContent(),
+                            it.getGoal().getId(),
+                            it.isCompleted()
+                    )).toList();
+            responses.add(new TodoWithDayResponse(todo.getKey(), todoResponses));
+        }
+        return responses;
     }
 }
