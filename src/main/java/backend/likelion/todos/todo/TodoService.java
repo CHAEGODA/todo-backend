@@ -41,8 +41,12 @@ public class TodoService {
     // 주어진 Todo의 내용과 날짜를 업데이트합니다.
     public void update(Long todoId, Long memberId, String content, LocalDate date) {
         // TODO [3단계] memberId로 회원 정보를 조회하고, 없으면 "회원 정보가 없습니다." 메시지와 함께 NotFoundException을 발생시키세요.
+        Member member = memberRepository.findById(memberId).orElseThrow(() -> new NotFoundException("회원 정보가 없습니다."));
         // TODO [3단계] todoId로 투두 정보를 조회하고, 없으면 "투두 정보가 없습니다." 메시지와 함께 NotFoundException을 발생시키세요.
+        Todo todo = todoRepository.findById(todoId).orElseThrow(() -> new NotFoundException("투두 정보가 없습니다."));
         // TODO [3단계] 조회한 투두의 멤버가 입력된 멤버와 동일한지 확인하고, 내용 및 날짜를 업데이트하세요.
+        todo.validateMember(member);
+        todo.update(content,date);
     }
 
     // 주어진 Todo를 완료 상태로 표시합니다.
