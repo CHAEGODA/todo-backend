@@ -55,6 +55,12 @@ public class GoalService {
         // TODO [8단계] memberId로 모든 목표(Goal)를 조회하세요.
             List<Goal> goals = goalRepository.findAllByMemberId(memberId);
         // TODO [8단계] 조회된 Goal들을 GoalResponse 리스트로 변환하여 반환하세요.
-        return null;
+        return goals.stream()
+                .map(it -> new GoalResponse(
+                        it.getId(),
+                        it.getName(),
+                        it.getColor()
+                ))
+                .toList();
     }
 }
