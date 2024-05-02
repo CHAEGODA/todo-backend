@@ -6,15 +6,7 @@ import java.time.YearMonth;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RequiredArgsConstructor
 @RequestMapping("/todos")
@@ -77,7 +69,7 @@ public class TodoController {
             @RequestParam(value = "month", required = true) int month
     ) {
         // TODO [9단계] memberId와 YearMonth.of(year, month)를 todoService의 findAllByMemberIdAndDate 메소드에 전달하여 해당 기간의 모든 Todo를 조회하고, 조회된 정보를 ResponseEntity.ok()에 담아 반환하세요.
-        List<todoWithDayREsponse> result =
+        List<TodoWithDayResponse> result =
                 todoService.findAllByMemberIdAndDate(memberId, YearMonth.of(year, month));
         return ResponseEntity.ok(result);
     }
