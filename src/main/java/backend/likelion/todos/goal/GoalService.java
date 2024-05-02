@@ -34,6 +34,7 @@ public class GoalService {
         // TODO [8단계] 조회된 Goal의 회원 정보가 입력된 memberId와 일치하는지 검증하세요.
             goal.validateMember(member);
         // TODO [8단계] Goal 객체의 정보를 새로운 name과 color로 업데이트하세요.
+            goal.update(name, color);
     }
 
     public void delete(Long goalId, Long memberId) {
