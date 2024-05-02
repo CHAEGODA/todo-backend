@@ -67,6 +67,7 @@ public class TodoController {
             @PathVariable("id") Long todoId
     ) {
         // TODO [9단계] todoId와 memberId를 todoService의 delete 메소드에 전달하여 Todo를 삭제하세요.
+        todoService.delete(todoId,memberId);
     }
 
     @GetMapping("/my")
