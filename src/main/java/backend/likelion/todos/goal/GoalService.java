@@ -19,8 +19,9 @@ public class GoalService {
         Member member = memberRepository.findById(memberId)
                 .orElseThrow(() -> new NotFoundException("회원 정보가 없습니다."));
         // TODO [8단계] 조회된 회원 정보를 사용하여 새 Goal 객체를 생성하세요.
+        Goal goal = new Goal(name, color, member);
         // TODO [8단계] 생성된 Goal 객체를 goalRepository에 저장하고, 저장된 Goal의 ID를 반환하세요.
-    }
+
 
     public void update(Long goalId, String name, String color, Long memberId) {
         // TODO [8단계] memberId로 회원을 조회하고, 조회에 실패하면 "회원 정보가 없습니다." 예외를 발생시키세요.
