@@ -46,6 +46,7 @@ public class GoalService {
             Goal goal = goalRepository.findById(goalId)
                     .orElseThrow(() -> new NotFoundException("목표정보가 없습니다."));
         // TODO [8단계] 조회된 Goal의 회원 정보가 입력된 memberId와 일치하는지 검증하세요.
+            goal.validateMember(member);
         // TODO [8단계] 검증이 완료되면 Goal을 goalRepository에서 삭제하세요.
     }
 
