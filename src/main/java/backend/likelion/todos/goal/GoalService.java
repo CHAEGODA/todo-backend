@@ -21,6 +21,7 @@ public class GoalService {
         // TODO [8단계] 조회된 회원 정보를 사용하여 새 Goal 객체를 생성하세요.
         Goal goal = new Goal(name, color, member);
         // TODO [8단계] 생성된 Goal 객체를 goalRepository에 저장하고, 저장된 Goal의 ID를 반환하세요.
+        return goalRepository.save(goal).getId();
 
 
     public void update(Long goalId, String name, String color, Long memberId) {
