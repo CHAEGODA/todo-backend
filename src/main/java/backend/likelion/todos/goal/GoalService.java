@@ -48,6 +48,7 @@ public class GoalService {
         // TODO [8단계] 조회된 Goal의 회원 정보가 입력된 memberId와 일치하는지 검증하세요.
             goal.validateMember(member);
         // TODO [8단계] 검증이 완료되면 Goal을 goalRepository에서 삭제하세요.
+            goalRepository.delete(goal);
     }
 
     public List<GoalResponse> findAllByMemberId(Long memberId) {
