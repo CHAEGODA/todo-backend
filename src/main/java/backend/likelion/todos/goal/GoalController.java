@@ -48,7 +48,8 @@ public class GoalController {
             @Auth Long memberId
     ) {
         // TODO [8단계] id와 memberId를 goalService의 delete 메소드에 전달하여 Goal을 삭제하고, ResponseEntity.ok()를 반환하세요.
-        return null;
+        goalService.delete(id,memberId);
+        return ResponseEntity.ok().build();
     }
 
     @GetMapping("/my")
