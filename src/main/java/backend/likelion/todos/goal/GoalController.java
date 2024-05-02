@@ -27,7 +27,8 @@ public class GoalController {
             @RequestBody GoalCreateRequest request
     ) {
         // TODO [8단계] GoalCreateRequest에서 이름과 색상을 추출하여 goalService의 save 메소드를 호출하고, 생성된 Goal의 ID로 URI를 생성하여 ResponseEntity를 반환하세요.
-        return null;
+        Long goalId = getService.save(request.name(), request.color(), memberId);
+        return ResponseEntity.created(URI.create("/goals/" + goalId)).build();
     }
 
     @PutMapping("/{id}")
