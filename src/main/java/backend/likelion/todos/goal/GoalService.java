@@ -43,6 +43,8 @@ public class GoalService {
             Member member = memberRepository.findById(memberId)
                     .orElseThrow(() -> new NotFoundException("회원 정보가 없습니다."));
         // TODO [8단계] goalId로 목표(Goal)를 조회하고, 조회에 실패하면 "목표 정보가 없습니다." 예외를 발생시키세요.
+            Goal goal = goalRepository.findById(goalId)
+                    .orElseThrow(() -> new NotFoundException("목표정보가 없습니다."));
         // TODO [8단계] 조회된 Goal의 회원 정보가 입력된 memberId와 일치하는지 검증하세요.
         // TODO [8단계] 검증이 완료되면 Goal을 goalRepository에서 삭제하세요.
     }
