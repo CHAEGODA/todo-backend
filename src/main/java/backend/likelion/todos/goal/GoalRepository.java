@@ -12,4 +12,4 @@ import org.springframework.stereotype.Repository;
     public interface GoalRepository extends JpaRepository<Goal, Long> {
         List<Goal> findAllByMemberId(Long memberId);
     }
-}
+
